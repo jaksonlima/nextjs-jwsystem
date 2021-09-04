@@ -3,18 +3,16 @@ import { createGlobalStyle } from 'styled-components'
 const GlobalStyle = createGlobalStyle`
   html,
   body {
-   padding: 0;
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
+    padding: 0 !important;
+    margin: 0 !important;
   }
 
   a {
-   color: inherit;
-   text-decoration: none;
+   text-decoration: none !important;
   }
 
   * {
-   box-sizing: border-box;
+   box-sizing: border-box !important;
   }
 `
 
