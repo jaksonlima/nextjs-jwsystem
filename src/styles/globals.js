@@ -5,7 +5,6 @@ const GlobalStyle = createGlobalStyle`
   body {
     padding: 0 !important;
     margin: 0 !important;
-    background-color: #ddd !important;
   }
 
   a {
@@ -27,7 +26,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #4d4d5799;
+    background: #7a7a90c9;
   }
 `
 

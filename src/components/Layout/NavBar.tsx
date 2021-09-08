@@ -1,75 +1,29 @@
+import Link from 'next/link'
 import {
   List,
   ListItem,
   ListItemIcon,
   ListItemText
 } from '@material-ui/core'
-import {
-  ExitToAppOutlined,
-  DateRangeOutlined,
-  LayersOutlined,
-  BookmarksOutlined,
-  HowToVoteOutlined,
-  StorefrontOutlined,
-  EventAvailableOutlined
-} from '@material-ui/icons'
 
+import { iconsHeader, iconsFooter, IconsProps } from './icons'
 import { Grid_ as Grid } from './styles';
 
 function NavBar() {
-  const iconsHeader = [
-    {
-      name: 'Agendas',
-      order: 1,
-      icon: <DateRangeOutlined />
-    },
-    {
-      name: 'Vendas',
-      order: 2,
-      icon: <EventAvailableOutlined />
-    },
-    {
-      name: 'Clientes',
-      order: 3,
-      icon: <BookmarksOutlined />
-    },
-    {
-      name: 'Produtos',
-      order: 4,
-      icon: <LayersOutlined />
-    },
-    {
-      name: 'Serviços',
-      order: 5,
-      icon: <HowToVoteOutlined />
-    },
-    {
-      name: 'Estoque',
-      order: 6,
-      icon: <StorefrontOutlined />
-    }
-  ]
-
-  const iconsFooter = [
-    {
-      name: 'Sair',
-      order: 2,
-      icon: <ExitToAppOutlined color='error' />
-    }
-  ]
-
-  function handleItensNavBar(icons) {
+  function handleItensNavBar(icons: IconsProps[]) {
     return (
       <List>
         {icons
           .sort((item1, item2) => item1.order - item2.order)
-          .map(item => (
-            <ListItem button key={item.name}>
-              <ListItemIcon>
-                {item.icon}
-              </ListItemIcon>
-              <ListItemText primary={item.name} />
-            </ListItem>
+          .map((item) => (
+            <Link href={item.go} passHref>
+              <ListItem button key={item.name}>
+                <ListItemIcon>
+                  {item.icon}
+                </ListItemIcon>
+                <ListItemText primary={item.name} />
+              </ListItem>
+            </Link>
           ))}
       </List>
     )

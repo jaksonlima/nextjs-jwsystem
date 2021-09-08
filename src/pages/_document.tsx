@@ -3,8 +3,6 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components'
 import { ServerStyleSheets } from '@material-ui/styles';
 
-import theme from '../theme';
-
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const styledComponentsSheet = new ServerStyleSheet()
@@ -37,10 +35,10 @@ class MyDocument extends Document {
         <Head>
           <meta charSet="utf-8" />
           {/* PWA primary color */}
-          <meta
+          {/* <meta
             name="theme-color"
-            content={theme.palette.primary.main}
-          />
+          content={theme.palette.primary.main}
+          /> */}
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
@@ -49,6 +47,7 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap"
           />
+          <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"></link>
         </Head>
         <body>
           <Main />

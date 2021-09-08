@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import Head from 'next/head';
-import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import theme from '../theme';
 import GlobalStyle from '../styles/globals';
 import Layout from '../components/Layout'
+import { ThemeProviderContext } from '../data/context/ThemeContext'
+import ThemeProvider from '../components/Theme/ThemeProvider'
 
 interface MyAppProps {
   Component: any,
@@ -23,16 +23,18 @@ export default function MyApp({ Component, pageProps }: MyAppProps) {
   return (
     <>
       <Head>
-        <title>JWS</title>
+        <title>Home</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
       <GlobalStyle />
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </ThemeProvider>
+      <ThemeProviderContext>
+        <ThemeProvider>
+          <CssBaseline />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ThemeProvider>
+      </ThemeProviderContext>
     </>
   );
 }

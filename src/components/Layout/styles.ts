@@ -73,6 +73,7 @@ interface GridProps {
   height?: string
   flexgrow?: number
   flexwrap?: string
+  cursor?: string
 }
 
 export const Grid_ = styled(Grid) <GridProps>`
@@ -87,6 +88,10 @@ export const Grid_ = styled(Grid) <GridProps>`
   ${({ flexwrap }) => flexwrap && css`
     flex-wrap: ${flexwrap} !important;
   `}
+
+  ${({ cursor }) => cursor && css`
+    cursor: ${cursor} !important;
+  `}
 `
 
 export const Avatar = styled.div`
@@ -95,4 +100,13 @@ export const Avatar = styled.div`
   align-items: center;
   justify-content: center;
   flex: 1;
+`
+
+export const GridContainer = styled(Grid)`
+  display: flex;
+  align-items: center;
+`
+
+export const GridTheme = styled(Grid)`
+  margin-left: 13px !important;
 `
