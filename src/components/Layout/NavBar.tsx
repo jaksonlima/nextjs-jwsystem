@@ -1,42 +1,89 @@
 import {
-  Divider,
-  IconButton,
   List,
   ListItem,
   ListItemIcon,
   ListItemText
-} from "@material-ui/core"
+} from '@material-ui/core'
 import {
-  ChevronRight as ChevronRightIcon,
-  ChevronLeft as ChevronLeftIcon,
-  Inbox as InboxIcon,
-  Mail as MailIcon
+  ExitToAppOutlined,
+  DateRangeOutlined,
+  LayersOutlined,
+  BookmarksOutlined,
+  HowToVoteOutlined,
+  StorefrontOutlined,
+  EventAvailableOutlined
 } from '@material-ui/icons'
 
-interface NavBarProps {
-  handleDrawerClose: () => void
-}
+import { Grid_ as Grid } from './styles';
 
-function NavBar({ handleDrawerClose }: NavBarProps) {
-  const classes = {}
-  const theme = {}
-  return (
-    <>
-      <div className={classes.toolbar}>
-        <IconButton onClick={handleDrawerClose}>
-          <ChevronLeftIcon />
-        </IconButton>
-      </div>
-      <Divider />
+function NavBar() {
+  const iconsHeader = [
+    {
+      name: 'Agendas',
+      order: 1,
+      icon: <DateRangeOutlined />
+    },
+    {
+      name: 'Vendas',
+      order: 2,
+      icon: <EventAvailableOutlined />
+    },
+    {
+      name: 'Clientes',
+      order: 3,
+      icon: <BookmarksOutlined />
+    },
+    {
+      name: 'Produtos',
+      order: 4,
+      icon: <LayersOutlined />
+    },
+    {
+      name: 'Serviços',
+      order: 5,
+      icon: <HowToVoteOutlined />
+    },
+    {
+      name: 'Estoque',
+      order: 6,
+      icon: <StorefrontOutlined />
+    }
+  ]
+
+  const iconsFooter = [
+    {
+      name: 'Sair',
+      order: 2,
+      icon: <ExitToAppOutlined color='error' />
+    }
+  ]
+
+  function handleItensNavBar(icons) {
+    return (
       <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        {icons
+          .sort((item1, item2) => item1.order - item2.order)
+          .map(item => (
+            <ListItem button key={item.name}>
+              <ListItemIcon>
+                {item.icon}
+              </ListItemIcon>
+              <ListItemText primary={item.name} />
+            </ListItem>
+          ))}
       </List>
-    </>
+    )
+  }
+
+  return (
+    <Grid container direction="column" height="100%" flexwrap="nowrap">
+      <Grid item flexgrow={1}>
+        {handleItensNavBar(iconsHeader)}
+      </Grid>
+      <Grid item>
+        {handleItensNavBar(iconsFooter)}
+      </Grid>
+    </Grid>
   )
 }
 

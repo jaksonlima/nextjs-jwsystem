@@ -5,6 +5,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     padding: 0 !important;
     margin: 0 !important;
+    background-color: #ddd !important;
   }
 
   a {
