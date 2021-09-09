@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { createStyles, Grid, makeStyles, Theme } from "@material-ui/core";
+import { BrightnessLowOutlined } from "@material-ui/icons";
 
 export const useStyles = (drawerWidth: number = 240) => {
   const styles = makeStyles((theme: Theme) =>

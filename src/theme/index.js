@@ -2,12 +2,20 @@ import { createTheme } from '@material-ui/core/styles';
 
 const palette = {
   primary: {
-    light: '#3c9ae8',
-    dark: '#177ddc'
+    light: '#2697ed',
+    dark: '#0f1c24'
   },
   secondary: {
-    light: '#33bcb7',
-    dark: '#138585'
+    light: '#2697ed',
+    dark: '#9cd4f7'
+  },
+  backgroud: {
+    light: '#fcfcfd',
+    dark: '#031f30'
+  },
+  paper: {
+    light: '#fcfcfd',
+    dark: '#0f1c24'
   }
 }
 
@@ -20,6 +28,10 @@ export const createThemeMUI = (type = 'dark') => {
       },
       secondary: {
         main: palette.secondary[type]
+      },
+      background: {
+        default: palette.backgroud[type],
+        paper: palette.paper[type],
       }
     },
   });

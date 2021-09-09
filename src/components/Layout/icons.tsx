@@ -23,49 +23,49 @@ export const iconsHeader: IconsProps[] = [
     name: 'Início',
     go: '/',
     order: 1,
-    icon: <HomeOutlined />
+    icon: <HomeOutlined color="secondary" />
   },
   {
     name: 'Agendas',
     go: '/agenda',
     order: 2,
-    icon: <DateRangeOutlined />
+    icon: <DateRangeOutlined color="secondary" />
   },
   {
     name: 'Vendas',
     go: '/venda',
     order: 3,
-    icon: <EventAvailableOutlined />
+    icon: <EventAvailableOutlined color="secondary" />
   },
   {
     name: 'Clientes',
     go: '/cliente',
     order: 4,
-    icon: <GroupAddOutlined />
+    icon: <GroupAddOutlined color="secondary" />
   },
   {
     name: 'Profissionais ',
     go: '/profissional',
     order: 5,
-    icon: <HowToRegOutlined />
+    icon: <HowToRegOutlined color="secondary" />
   },
   {
     name: 'Produtos',
     go: '/produto',
     order: 6,
-    icon: <LayersOutlined />
+    icon: <LayersOutlined color="secondary" />
   },
   {
     name: 'Serviços',
     go: '/servico',
     order: 7,
-    icon: <HowToVoteOutlined />
+    icon: <HowToVoteOutlined color="secondary" />
   },
   {
     name: 'Estoques',
     go: '/estoque',
     order: 8,
-    icon: <StorefrontOutlined />
+    icon: <StorefrontOutlined color="secondary" />
   },
 ]
 
