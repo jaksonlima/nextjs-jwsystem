@@ -3,9 +3,9 @@ import { createGlobalStyle } from 'styled-components'
 const GlobalStyle = createGlobalStyle`
   html,
   body {
-    padding: 0 !important;
-    margin: 0 !important;
-    font-family: 'Open Sans', sans-serif !important;
+    /* padding: 0 !important;
+    margin: 0 !important; */
+    /* font-family: 'Open Sans', sans-serif !important; */
   }
 
   a {
@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   * {
-   box-sizing: border-box !important;
+   /* box-sizing: border-box !important; */
   }
 
   ::-webkit-scrollbar {

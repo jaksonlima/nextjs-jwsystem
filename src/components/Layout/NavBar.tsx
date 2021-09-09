@@ -16,7 +16,7 @@ function NavBar() {
         {icons
           .sort((item1, item2) => item1.order - item2.order)
           .map((item) => (
-            <Link href={item.go} passHref>
+            <Link href={item.go} passHref key={item.go}>
               <ListItem button key={item.name}>
                 <ListItemIcon>
                   {item.icon}

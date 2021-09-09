@@ -11,7 +11,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
-import ToolbarHeader from './ToolbarHeader'
+import ToolbarHeader from './Header'
 import NavBar from './NavBar';
 import Avatar from './Avatar'
 import { useStyles } from './styles';

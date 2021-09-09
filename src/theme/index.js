@@ -3,7 +3,7 @@ import { createTheme } from '@material-ui/core/styles';
 const palette = {
   primary: {
     light: '#2697ed',
-    dark: '#0f1c24'
+    dark: '#0f1c24',
   },
   secondary: {
     light: '#2697ed',
@@ -24,7 +24,7 @@ export const createThemeMUI = (type = 'dark') => {
     palette: {
       type,
       primary: {
-        main: palette.primary[type]
+        main: palette.primary[type],
       },
       secondary: {
         main: palette.secondary[type]
@@ -34,6 +34,21 @@ export const createThemeMUI = (type = 'dark') => {
         paper: palette.paper[type],
       }
     },
+    typography: {
+      htmlFontSize: 18,
+      fontFamily: [
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        'Roboto',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+      ].join(','),
+    }
   });
 
   return theme

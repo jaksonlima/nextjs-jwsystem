@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
-import { createStyles, Grid, makeStyles, Theme } from "@material-ui/core";
-import { BrightnessLowOutlined } from "@material-ui/icons";
+import { createStyles, Grid, makeStyles, Theme, Typography } from "@material-ui/core";
 
 export const useStyles = (drawerWidth: number = 240) => {
   const styles = makeStyles((theme: Theme) =>
@@ -107,7 +106,6 @@ export const GridContainer = styled(Grid)`
   display: flex;
   align-items: center;
 `
-
-export const GridTheme = styled(Grid)`
-  margin-left: 13px !important;
+export const Typography_ = styled(Typography)`
+  font-family: fantasy !important;
 `
