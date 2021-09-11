@@ -4,7 +4,6 @@ import { useState } from "react";
 export default function Home() {
   const [value, setValue] = useState('')
 
-  console.log('#### RENDER #### ')
   return (
     <Grid container spacing={2}>
       <Grid item >

@@ -36,8 +36,6 @@ export default function Layout({ children }: LayoutProps) {
     }
   }
 
-  console.log('Layout', new Date().toDateString())
-
   return (
     <div className={classes.root}>
       <AppBar
