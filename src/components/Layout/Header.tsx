@@ -3,7 +3,7 @@ import { BrightnessLowOutlined, Brightness4Outlined, NotificationsNoneOutlined }
 
 import useThemeContext from "../../data/hooks/useThemeContext";
 import { Theme } from "../../data/context/ThemeContext";
-import { GridContainer, Typography_ as Typography } from "./styles";
+import { GridContainer, TypographyToolbarHeader as Typography } from "./styles";
 
 function ToolbarHeader() {
   const { type, onChangeTheme } = useThemeContext()

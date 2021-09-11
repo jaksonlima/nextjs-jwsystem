@@ -1,20 +1,13 @@
 import { useState } from 'react';
-import Image from 'next/image'
-import { useTheme } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { useTheme, Drawer, AppBar, Toolbar, Divider, IconButton } from '@material-ui/core';
+import { Menu, ChevronLeft, ChevronRight } from '@material-ui/icons'
 
-import ToolbarHeader from './Header'
+import { useStylesLayout } from './styles';
+import ToolbarHeader from './Header';
 import NavBar from './NavBar';
-import Avatar from './Avatar'
-import { useStyles } from './styles';
+import Avatar from './Avatar';
+import Navigation from './Navigation'
 
 interface LayoutProps {
   children: any
@@ -24,7 +17,7 @@ export default function Layout({ children }: LayoutProps) {
   const [open, setOpen] = useState(false);
   const [openOnMouse, setOpenOnMouse] = useState(false);
   const theme = useTheme();
-  const classes = useStyles()
+  const classes = useStylesLayout()
 
   const handleDrawer = () => setOpen(!open)
   const handleDrawerOnMouse = () => setOpenOnMouse(!openOnMouse)
@@ -42,6 +35,8 @@ export default function Layout({ children }: LayoutProps) {
       handleDrawerOnMouse()
     }
   }
+
+  console.log('Layout', new Date().toDateString())
 
   return (
     <div className={classes.root}>
@@ -61,7 +56,7 @@ export default function Layout({ children }: LayoutProps) {
               [classes.hide]: open,
             })}
           >
-            <MenuIcon />
+            <Menu />
           </IconButton>
           <ToolbarHeader />
         </Toolbar>
@@ -84,7 +79,7 @@ export default function Layout({ children }: LayoutProps) {
         <div className={classes.toolbar} >
           <Avatar />
           <IconButton onClick={handleDrawer}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            {theme.direction === 'rtl' ? <ChevronRight /> : <ChevronLeft />}
           </IconButton>
         </div>
         <Divider />
@@ -92,6 +87,7 @@ export default function Layout({ children }: LayoutProps) {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
+        <Navigation />
         {children}
       </main>
     </div>

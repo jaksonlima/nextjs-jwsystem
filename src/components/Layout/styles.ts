@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { createStyles, Grid, makeStyles, Theme, Typography } from "@material-ui/core";
 
-export const useStyles = (drawerWidth: number = 240) => {
+export const useStylesLayout = (drawerWidth: number = 240) => {
   const styles = makeStyles((theme: Theme) =>
     createStyles({
       root: {
@@ -68,7 +68,6 @@ export const useStyles = (drawerWidth: number = 240) => {
   return styles();
 }
 
-
 interface GridProps {
   height?: string
   flexgrow?: number
@@ -106,6 +105,22 @@ export const GridContainer = styled(Grid)`
   display: flex;
   align-items: center;
 `
-export const Typography_ = styled(Typography)`
+export const TypographyToolbarHeader = styled(Typography)`
   font-family: fantasy !important;
 `
+export const TypographyCursorPointer = styled(Typography)`
+  cursor: pointer;
+`
+
+export const useStylesNavegation = makeStyles((theme: Theme) =>
+  createStyles({
+    link: {
+      display: 'flex',
+    },
+    icon: {
+      marginRight: theme.spacing(0.5),
+      width: 20,
+      height: 20,
+    },
+  }),
+);
