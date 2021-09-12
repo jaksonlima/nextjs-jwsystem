@@ -33,7 +33,10 @@ class MyDocument extends Document {
     return (
       <Html lang="pt-BR" dir="ltr">
         <Head>
+          <title>JWS</title>
+          <link rel="icon" href="/image/jws.svg" />
           <meta charSet="utf-8" />
+          <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
           {/* PWA primary color */}
           {/* <meta
             name="theme-color"
