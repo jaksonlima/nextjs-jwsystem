@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { FormControl, Grid, IconButton, Input, InputAdornment, InputLabel, makeStyles, Theme, createStyles, TextField } from '@material-ui/core';
+import { FormControl, Grid, IconButton, Input, InputAdornment, InputLabel, makeStyles, Theme, createStyles, TextField, FormHelperText } from '@material-ui/core';
 import { useForm } from "react-hook-form";
 import styled from 'styled-components';
 import { useState } from 'react';
@@ -48,6 +48,7 @@ function Login() {
           <FormControl className={clsx(classes.margin, classes.textField)}>
             <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
             <Input
+              error
               id="standard-adornment-password"
               type={values.showPassword ? 'text' : 'password'}
               value={values.password}
@@ -63,8 +64,19 @@ function Login() {
                   </IconButton>
                 </InputAdornment>
               }
+
             />
+            <FormHelperText id="standard-weight-helper-text">Weight</FormHelperText>
           </FormControl>
+
+          <Grid container spacing={1} alignItems="flex-end">
+            <Grid item>
+              <AccountCircle />
+            </Grid>
+            <Grid item>
+              <TextField id="input-with-icon-grid" label="With a grid" helperText="Error" />
+            </Grid>
+          </Grid>
         </form>
       </Grid>
 
