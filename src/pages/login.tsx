@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import Head from 'next/head'
 import Image from 'next/image'
 import { Button, Divider, Grid, IconButton, Typography } from '@material-ui/core';
-import { Visibility, VisibilityOff, Email, Delete } from '@material-ui/icons';
+import { Visibility, VisibilityOff, Email, Delete, Height } from '@material-ui/icons';
 import styled from 'styled-components';
 
 import Input from '../components/Input';
@@ -19,134 +19,136 @@ function Login() {
   };
 
   return (
-    <GridContainer container justifyContent="center" alignItems="center">
-      <Head>
-        <title>Login</title>
-        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-      </Head>
-      <GridImage item>
-        <Image src="/image/jws-199-344.png" width={179} height={324} />
-        <H1 >
-          Faça seu login
-          <br />
-          na plataforma
-        </H1>
+    <Container>
+      <GridImage container xs={5} direction="column" justifyContent="space-between">
+        <Grid style={{ marginBottom: '25px' }}>
+          <Image src="/image/jws-white-198-344.png" width={158} height={294} />
+        </Grid>
+        <Grid>
+          <TypographyPrimary variant="h2" >
+            Faça seu login na plataforma.
+          </TypographyPrimary>
+          <TypographySecundary variant="h6" >
+            Inovação tecnológica.
+          </TypographySecundary>
+        </Grid>
+        <Grid>
+          <TypographyThird variant="body1"  >
+            Use a plataforma 30 dias gratuitamente.
+          </TypographyThird>
+        </Grid>
       </GridImage>
-      <GridItem item>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Grid container spacing={4} direction="column">
-            <Grid item >
-              <Input
-                name="email"
-                placeholder="E-mail"
-                color="secondary"
-                control={control}
-                errors={errors}
-                icon={
-                  <IconButton>
-                    <Email color="action" />
-                  </IconButton>
-                }
-              />
-            </Grid>
-            <Grid item>
-              <Input
-                name="password"
-                placeholder="Senha"
-                color="secondary"
-                type={visible ? 'text' : 'password'}
-                rules={{ required: 'Senha obrigatória' }}
-                control={control}
-                errors={errors}
-                icon={
-                  <IconButton onClick={onChangeVisible} >
-                    {visible ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                }
-              />
-            </Grid>
-          </Grid>
-          <Button_ type="submit" variant="contained" color="secondary">
-            entrar
-          </Button_>
-        </form>
-        <Divider_ />
-        <ButtonIcon
-          variant="contained"
-          color="secondary"
-          startIcon={
-            <>
-              <Image src="/image/google.svg" width="25" height="25" />
-            </>
-          }
-        >
-          Continuar com o Google
-        </ButtonIcon>
-
-        <P_>Novo por aqui?
-          <A_>Criar uma conta gratuitamente</A_>
-        </P_>
-      </GridItem>
-    </GridContainer>
-  );
+      <Grid container item xs={7} justifyContent="center" direction="column" alignItems="center">
+        <Grid style={{ marginBottom: '25px' }}>
+          <Image src="/image/jws-112-175.png" width={62} height={105} />
+        </Grid>
+        <TypographyTitle variant="h5" >
+          Conecte-se.
+        </TypographyTitle>
+        <GridItem>
+          <Input
+            name="email"
+            placeholder="E-mail"
+            color="secondary"
+            control={control}
+            errors={errors}
+            icon={
+              <IconButton>
+                <Email color="action" />
+              </IconButton>
+            }
+          />
+        </GridItem>
+        <GridItem>
+          <Input
+            name="password"
+            placeholder="Senha"
+            color="secondary"
+            type={visible ? 'text' : 'password'}
+            rules={{ required: 'Senha obrigatória' }}
+            control={control}
+            errors={errors}
+            icon={
+              <IconButton onClick={onChangeVisible} >
+                {visible ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            }
+          />
+          <TypographyRecoverPass variant="body1" >
+            Esqueceu sua senha?
+          </TypographyRecoverPass>
+        </GridItem>
+        <GridItem>
+          <Divider style={{ margin: '35px' }} />
+        </GridItem>
+      </Grid>
+    </Container >
+  )
 }
 
-export const GridContainer = styled(Grid)`
-  min-height: 100vh;
-`
 
-export const GridItem = styled(Grid)`
-  max-width: 480px;
-  width: 100%;  
-  padding: 64px;
-  margin-left: 45px !important;
-  border-radius: 6px;
-  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
-`
-
-export const Button_ = styled(Button)`
-  width: 100%;
-  height: 50px;
-  margin-top: 44px !important;
-  text-transform: uppercase;
-  font-weight: bold !important;
-  font-size: 16px !important;
-`
-
-export const Divider_ = styled(Divider)`
-  margin-top: 50px !important;
-`
-export const ButtonIcon = styled(Button)`
-  width: 100%;
-  height: 50px;
-  margin-top: 44px !important;
-  font-weight: bold !important;
-  font-size: 16px !important;
-  background-color: #ef4444 !important;
-`
-
-export const A_ = styled.a`
-  text-decoration: none;
-  color: #3b82f7;
-  font-weight: 500;
-  cursor: pointer;
-  margin: 6px;
-`
-
-export const P_ = styled.p`
-  margin: 2rem;
-  font-weight: 500;
+export const Container = styled.div`
+  height: 100vh;
+  display: flex;
+  box-sizing: border-box;
 `
 
 export const GridImage = styled(Grid)`
-  width: 100%;
-  max-width: 480px;
+  padding: 4% 4%;
+  
+  background-image: url('https://source.unsplash.com/random/?nature&ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: #111111;
 `
 
-export const H1 = styled.h1`
-  margin-bottom: 24px;
-  font-size: 54px;
-  line-height: 64px;
+export const GridItem = styled.div`
+  max-width: 500px;
+  width: 100%;
+  margin: 5px;
+  padding: 5px;
+`
+
+export const TypographyPrimary = styled(Typography)`
+  color: #fcfcfd !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  margin-bottom: 21px !important;
+`
+
+export const TypographySecundary = styled(Typography)`
+  color: #fcfcfd !important;
+  font-weight: 400 !important;
+  line-height: 1.35 !important;
+`
+
+export const TypographyThird = styled(Typography)`
+  color: #fcfcfd !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  line-height: 1.6 !important;
+  margin: 16px 0 !important;
+`
+
+export const TypographyTitle = styled(Typography)`
+  font-size: 28px !important;
+  font-weight: bold !important;
+  margin-bottom: 8px !important;
+  color: '#131316';
+`
+
+export const TypographyRecoverPass = styled(Typography)`
+ color: '#131316' !important;
+ text-align: end !important;
+ margin-top: 15px !important;
+ cursor: pointer;
+
+ transition: color 0.2s ease-in-out;
+
+ &:hover {
+  color: #c2e59c;
+ }
 `
 
 export default Login
