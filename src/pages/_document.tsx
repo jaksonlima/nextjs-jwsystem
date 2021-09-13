@@ -33,19 +33,7 @@ class MyDocument extends Document {
     return (
       <Html lang="pt-BR" dir="ltr">
         <Head>
-          <title>JWS</title>
-          <link rel="icon" href="/image/jws.svg" />
           <meta charSet="utf-8" />
-          <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-          {/* PWA primary color */}
-          {/* <meta
-            name="theme-color"
-          content={theme.palette.primary.main}
-          /> */}
-          {/* <link rel="preconnect" href="https://fonts.googleapis.com" ></link>
-          <link rel="preconnect" href="https://fonts.gstatic.com"  ></link>
-          <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
-          <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet" /> */}
         </Head>
         <body>
           <Main />

@@ -1,92 +1,152 @@
+import { useState } from 'react';
+import { useForm } from "react-hook-form";
 import Head from 'next/head'
 import Image from 'next/image'
-import { FormControl, Grid, IconButton, Input, InputAdornment, InputLabel, makeStyles, Theme, createStyles, TextField, FormHelperText } from '@material-ui/core';
-import { useForm } from "react-hook-form";
+import { Button, Divider, Grid, IconButton, Typography } from '@material-ui/core';
+import { Visibility, VisibilityOff, Email, Delete } from '@material-ui/icons';
 import styled from 'styled-components';
-import { useState } from 'react';
-import { AccountCircle, Visibility, VisibilityOff } from '@material-ui/icons';
-import clsx from 'clsx';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-    },
-    margin: {
-      margin: theme.spacing(1),
-    },
-    withoutLabel: {
-      marginTop: theme.spacing(3),
-    },
-    textField: {
-      width: '25ch',
-    },
-  }),
-);
+import Input from '../components/Input';
 
 function Login() {
-  const classes = useStyles();
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const onSubmit = data => console.log(data);
+  const [visible, setVisible] = useState(false)
+  const { handleSubmit, watch, control, formState: { errors } } = useForm();
 
-  console.log(watch());
-  const [values, setValue] = useState({ showPassword: true, password: '' })
-  const handleChange = (env) => {
-  }
+  const onSubmit = data => console.log('Data', data);
+
+  const onChangeVisible = () => {
+    setVisible(!visible)
+  };
+
   return (
-    <GridContainer container>
+    <GridContainer container justifyContent="center" alignItems="center">
       <Head>
         <title>Login</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
-      <Grid item>
-        <Image src="/image/jws-162-251.png" width={162} height={251} />
-      </Grid>
-      <Grid item>
-        <form>
-          <FormControl className={clsx(classes.margin, classes.textField)}>
-            <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
-            <Input
-              error
-              id="standard-adornment-password"
-              type={values.showPassword ? 'text' : 'password'}
-              value={values.password}
-              // onChange={handleChange('password')}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                  // onClick={handleClickShowPassword}
-                  // onMouseDown={handleMouseDownPassword}
-                  >
-                    {values.showPassword ? <Visibility /> : <VisibilityOff />}
+      <GridImage item>
+        <Image src="/image/jws-199-344.png" width={179} height={324} />
+        <H1 >
+          Faça seu login
+          <br />
+          na plataforma
+        </H1>
+      </GridImage>
+      <GridItem item>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Grid container spacing={4} direction="column">
+            <Grid item >
+              <Input
+                name="email"
+                placeholder="E-mail"
+                color="secondary"
+                control={control}
+                errors={errors}
+                icon={
+                  <IconButton>
+                    <Email color="action" />
                   </IconButton>
-                </InputAdornment>
-              }
-
-            />
-            <FormHelperText id="standard-weight-helper-text">Weight</FormHelperText>
-          </FormControl>
-
-          <Grid container spacing={1} alignItems="flex-end">
-            <Grid item>
-              <AccountCircle />
+                }
+              />
             </Grid>
             <Grid item>
-              <TextField id="input-with-icon-grid" label="With a grid" helperText="Error" />
+              <Input
+                name="password"
+                placeholder="Senha"
+                color="secondary"
+                type={visible ? 'text' : 'password'}
+                rules={{ required: 'Senha obrigatória' }}
+                control={control}
+                errors={errors}
+                icon={
+                  <IconButton onClick={onChangeVisible} >
+                    {visible ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                }
+              />
             </Grid>
           </Grid>
+          <Button_ type="submit" variant="contained" color="secondary">
+            entrar
+          </Button_>
         </form>
-      </Grid>
+        <Divider_ />
+        <ButtonIcon
+          variant="contained"
+          color="secondary"
+          startIcon={
+            <>
+              <Image src="/image/google.svg" width="25" height="25" />
+            </>
+          }
+        >
+          Continuar com o Google
+        </ButtonIcon>
 
+        <P_>Novo por aqui?
+          <A_>Criar uma conta gratuitamente</A_>
+        </P_>
+      </GridItem>
     </GridContainer>
   );
 }
 
 export const GridContainer = styled(Grid)`
   min-height: 100vh;
-  background-color: #a4a0c752;
+`
+
+export const GridItem = styled(Grid)`
+  max-width: 480px;
+  width: 100%;  
+  padding: 64px;
+  margin-left: 45px !important;
+  border-radius: 6px;
+  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+`
+
+export const Button_ = styled(Button)`
+  width: 100%;
+  height: 50px;
+  margin-top: 44px !important;
+  text-transform: uppercase;
+  font-weight: bold !important;
+  font-size: 16px !important;
+`
+
+export const Divider_ = styled(Divider)`
+  margin-top: 50px !important;
+`
+export const ButtonIcon = styled(Button)`
+  width: 100%;
+  height: 50px;
+  margin-top: 44px !important;
+  font-weight: bold !important;
+  font-size: 16px !important;
+  background-color: #ef4444 !important;
+`
+
+export const A_ = styled.a`
+  text-decoration: none;
+  color: #3b82f7;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 6px;
+`
+
+export const P_ = styled.p`
+  margin: 2rem;
+  font-weight: 500;
+`
+
+export const GridImage = styled(Grid)`
+  width: 100%;
+  max-width: 480px;
+`
+
+export const H1 = styled.h1`
+  margin-bottom: 24px;
+  font-size: 54px;
+  line-height: 64px;
 `
 
 export default Login
