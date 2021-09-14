@@ -1,0 +1,193 @@
+<html>
+
+<head>
+    <title>ABB STORE</title>
+    <meta charset="utf-8" />
+
+    <style>
+        .container {
+            display: flex;
+        }
+
+        #carrinho {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            font-size: 1.5rem;
+            text-align: center;
+            border-radius: 10px;
+            border-left: 10px solid rgba(126, 84, 222, 1);
+        }
+
+        #produtos {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            font-size: 1.5rem;
+            text-align: center;
+            border-radius: 10px;
+            border-left: 10px solid rgb(4, 211, 97);
+        }
+
+        .produto-cartao {
+            display: flex;
+            max-width: 500px;
+            width: 100%;
+            padding: 10px;
+            margin: 35px;
+            border-radius: 10px;
+            border-left: 8px solid rgb(0, 153, 255);
+            transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .divider {
+            display: flex;
+            flex-direction: column;
+            margin-left: 16px;
+        }
+
+        .divider h2 {
+            font-size: 2rem;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 700;
+            line-height: 1;
+            margin-top: 0;
+        }
+
+        .divider a {
+            text-decoration: none;
+            text-transform: capitalize;
+            font-size: 1.4rem;
+            cursor: pointer;
+            font-weight: bold;
+            color: rgba(126, 84, 222, 1);
+        }
+
+        .image {
+            width: 150px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 5px;
+        }
+
+        .crescer {
+            transition: all .4s ease-in-out;
+        }
+
+        .crescer:hover {
+            transform: scale(1.1);
+        }
+
+        .sombra-no-centro {
+            animation: sombra-no-centro 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        }
+
+        @keyframes sombra-no-centro {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <!--produtos-->
+        <div id="produtos">
+            <h1>Produtos</h1>
+        </div>
+
+
+        <!--carrinho-->
+        <div id="carrinho">
+            <h1>Carinho</h1>
+        </div>
+    </div>
+
+    <script>
+        const CLASE_CARRINHO = 'carrinho'
+        const CLASE_PRODUTOS = 'produtos'
+
+        const items = [
+            {
+                id: 0,
+                nome: 'camiseta',
+                img: 'https://source.unsplash.com/random',
+                quantidade: 0
+
+            },
+            {
+                id: 1,
+                nome: 'shooooes',
+                img: 'https://source.unsplash.com/random',
+                quantidade: 0
+
+            },
+            {
+                id: 2,
+                nome: 'short',
+                img: 'https://source.unsplash.com/random',
+                quantidade: 0
+
+            },
+        ]
+
+        adicionarEventoNoLink = (funcaoDeEvento, identificador, mensagem, cor) => {
+            const elementoHTML = document.querySelectorAll(`.${identificador}`);
+
+            elementoHTML[0].innerText = mensagem
+            elementoHTML[0].style.color = cor;
+
+            elementoHTML[0].addEventListener('click', () => {
+                funcaoDeEvento(identificador)
+            })
+        }
+
+        adicionarNoCarinho = (identificador) => {
+            const cartaoProduto = document.getElementById(identificador)
+            const carrinho = document.getElementById(CLASE_CARRINHO);
+            carrinho.appendChild(cartaoProduto)
+
+            adicionarEventoNoLink(adicionarNosProdutos, identificador, 'Adicionar Produto', 'rgb(4, 211, 97)')
+        }
+
+        adicionarNosProdutos = (identificador) => {
+            const cartaoProduto = document.getElementById(identificador)
+            const produto = document.getElementById(CLASE_PRODUTOS);
+            produto.appendChild(cartaoProduto)
+
+            adicionarEventoNoLink(adicionarNoCarinho, identificador, 'Adicionar Carrinho', 'rgba(126, 84, 222, 1)')
+        }
+
+        inicializarLoja = () => {
+            const produtoHTML = document.getElementById(CLASE_PRODUTOS);
+
+            items.forEach(({ img, nome, id }) => {
+                const identificador = `${nome}-${id}`
+
+                produtoHTML.innerHTML += `
+                <div id='${identificador}' class="produto-cartao sombra-no-centro crescer">
+                   <img class="image" src='${img}'>
+                   <div class="divider">
+                      <h2>${nome}</h2>
+                      <a class='${identificador}' onclick="adicionarNoCarinho('${identificador}')">Adicionar Carrinho<a/>
+                    </div>
+                </div>
+                `
+            })
+        }
+
+        inicializarLoja();
+    </script>
+
+</body>
+
+</html>

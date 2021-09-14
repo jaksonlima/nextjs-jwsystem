@@ -1,12 +1,23 @@
 import { useState } from 'react';
 import { useForm } from "react-hook-form";
-import Head from 'next/head'
 import Image from 'next/image'
-import { Button, Divider, Grid, IconButton, Typography } from '@material-ui/core';
-import { Visibility, VisibilityOff, Email, Delete, Height } from '@material-ui/icons';
-import styled from 'styled-components';
+import { Button, Divider, Grid, IconButton, Hidden } from '@material-ui/core';
+import { Visibility, VisibilityOff, Email, } from '@material-ui/icons';
 
 import Input from '../components/Input';
+
+import {
+  Container,
+  GridImage,
+  GridImageNext,
+  GridItem,
+  ImageNext,
+  TypographyPrimary,
+  TypographyRecoverPass,
+  TypographySecundary,
+  TypographyThird,
+  TypographyTitle
+} from '../styles/login/styles';
 
 function Login() {
   const [visible, setVisible] = useState(false)
@@ -20,30 +31,32 @@ function Login() {
 
   return (
     <Container>
-      <GridImage container xs={5} direction="column" justifyContent="space-between">
-        <Grid style={{ marginBottom: '25px' }}>
+      <GridImage container item sm md={5} direction="column" justifyContent="space-between">
+        <ImageNext >
           <Image src="/image/jws-white-198-344.png" width={158} height={294} />
-        </Grid>
+        </ImageNext>
         <Grid>
           <TypographyPrimary variant="h2" >
             Faça seu login na plataforma.
           </TypographyPrimary>
           <TypographySecundary variant="h6" >
-            Inovação tecnológica.
+            Inovação, tecnológica.
           </TypographySecundary>
         </Grid>
-        <Grid>
-          <TypographyThird variant="body1"  >
-            Use a plataforma 30 dias gratuitamente.
-          </TypographyThird>
-        </Grid>
+        <Hidden smDown>
+          <Grid>
+            <TypographyThird variant="body1" >
+              Use a plataforma 30 dias gratuitamente.
+            </TypographyThird>
+          </Grid>
+        </Hidden>
       </GridImage>
-      <Grid container item xs={7} justifyContent="center" direction="column" alignItems="center">
-        <Grid style={{ marginBottom: '25px' }}>
+      <Grid container item sm justifyContent="center" direction="column" alignItems="center" style={{ margin: '15px' }}>
+        <GridImageNext >
           <Image src="/image/jws-112-175.png" width={62} height={105} />
-        </Grid>
+        </GridImageNext>
         <TypographyTitle variant="h5" >
-          Conecte-se.
+          Conecte-se
         </TypographyTitle>
         <GridItem>
           <Input
@@ -79,76 +92,23 @@ function Login() {
           </TypographyRecoverPass>
         </GridItem>
         <GridItem>
+          <Button variant="outlined" color="secondary" style={{ width: '82px', height: '37px' }}>
+            Entrar
+          </Button>
+        </GridItem>
+        <GridItem>
           <Divider style={{ margin: '35px' }} />
         </GridItem>
+        <Button variant="outlined" style={{ color: 'red', borderColor: 'red' }}>
+          <Image src="/image/google.svg" width="25" height="25" />
+        </Button>
       </Grid>
     </Container >
   )
 }
 
 
-export const Container = styled.div`
-  height: 100vh;
-  display: flex;
-  box-sizing: border-box;
-`
 
-export const GridImage = styled(Grid)`
-  padding: 4% 4%;
-  
-  background-image: url('https://source.unsplash.com/random/?nature&ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-color: #111111;
-`
 
-export const GridItem = styled.div`
-  max-width: 500px;
-  width: 100%;
-  margin: 5px;
-  padding: 5px;
-`
-
-export const TypographyPrimary = styled(Typography)`
-  color: #fcfcfd !important;
-  font-weight: 700 !important;
-  line-height: 1 !important;
-  margin-bottom: 21px !important;
-`
-
-export const TypographySecundary = styled(Typography)`
-  color: #fcfcfd !important;
-  font-weight: 400 !important;
-  line-height: 1.35 !important;
-`
-
-export const TypographyThird = styled(Typography)`
-  color: #fcfcfd !important;
-  font-size: 15px !important;
-  font-weight: 400 !important;
-  line-height: 1.6 !important;
-  margin: 16px 0 !important;
-`
-
-export const TypographyTitle = styled(Typography)`
-  font-size: 28px !important;
-  font-weight: bold !important;
-  margin-bottom: 8px !important;
-  color: '#131316';
-`
-
-export const TypographyRecoverPass = styled(Typography)`
- color: '#131316' !important;
- text-align: end !important;
- margin-top: 15px !important;
- cursor: pointer;
-
- transition: color 0.2s ease-in-out;
-
- &:hover {
-  color: #c2e59c;
- }
-`
 
 export default Login
