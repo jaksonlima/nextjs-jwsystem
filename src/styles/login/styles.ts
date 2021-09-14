@@ -88,6 +88,7 @@ export const TypographyTitle = styled(Typography)`
 `
 
 export const TypographyRecoverPass = styled(Typography)`
+font-weight: 500 !important;
  color: '#131316' !important;
  text-align: end !important;
  margin-top: 15px !important;
@@ -98,4 +99,19 @@ export const TypographyRecoverPass = styled(Typography)`
  &:hover {
   color: #c2e59c;
  }
+`
+
+export const NovaConta = styled.div`
+  margin-top: 25px;
+
+  p {
+    font-weight: 500;
+  }
+  
+  a {
+    margin-left: 2px;
+    cursor: pointer;
+    font-weight: 600;
+    color: rgba(59, 130, 247, 1);
+  }
 `

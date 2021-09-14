@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useForm } from "react-hook-form";
 import Image from 'next/image'
-import { Button, Divider, Grid, IconButton, Hidden } from '@material-ui/core';
+import { Button, Divider, Grid, IconButton, Hidden, Typography } from '@material-ui/core';
 import { Visibility, VisibilityOff, Email, } from '@material-ui/icons';
 
 import Input from '../components/Input';
@@ -12,15 +12,20 @@ import {
   GridImageNext,
   GridItem,
   ImageNext,
+  NovaConta,
   TypographyPrimary,
   TypographyRecoverPass,
   TypographySecundary,
   TypographyThird,
   TypographyTitle
 } from '../styles/login/styles';
+import useThemeContext from '../data/hooks/useThemeContext';
+import { Theme } from '../data/context/ThemeContext';
 
 function Login() {
+  const { type } = useThemeContext()
   const [visible, setVisible] = useState(false)
+  const [typeForm, setTypeForm] = useState<'login' | 'cadastro'>('login')
   const { handleSubmit, watch, control, formState: { errors } } = useForm();
 
   const onSubmit = data => console.log('Data', data);
@@ -53,7 +58,7 @@ function Login() {
       </GridImage>
       <Grid container item sm justifyContent="center" direction="column" alignItems="center" style={{ margin: '15px' }}>
         <GridImageNext >
-          <Image src="/image/jws-112-175.png" width={62} height={105} />
+          <Image src={`${type === Theme.LIGT ? '/image/jws-112-175.png' : '/image/jws-white-112-175.png'}`} width={62} height={105} />
         </GridImageNext>
         <TypographyTitle variant="h5" >
           Conecte-se
@@ -102,12 +107,18 @@ function Login() {
         <Button variant="outlined" style={{ color: 'red', borderColor: 'red' }}>
           <Image src="/image/google.svg" width="25" height="25" />
         </Button>
+        <NovaConta>
+          <p>
+            Novo por aqui?
+            <a onClick={() => setTypeForm(typeForm === 'login' ? 'cadastro' : 'login')}>
+              Criar uma conta gratuitamente
+            </a>
+          </p>
+        </NovaConta>
       </Grid>
     </Container >
   )
 }
-
-
 
 
 
