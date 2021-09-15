@@ -109,7 +109,7 @@ export const NovaConta = styled.div`
   }
   
   a {
-    margin-left: 2px;
+    margin-left: 5px !important;
     cursor: pointer;
     font-weight: 600;
     color: rgba(59, 130, 247, 1);

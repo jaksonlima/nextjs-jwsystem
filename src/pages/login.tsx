@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useForm } from "react-hook-form";
 import Image from 'next/image'
-import { Button, Divider, Grid, IconButton, Hidden, Typography } from '@material-ui/core';
-import { Visibility, VisibilityOff, Email, } from '@material-ui/icons';
+import { Button, Divider, Grid, IconButton, Hidden } from '@material-ui/core';
+import { Visibility, VisibilityOff, Email, InsertComment, Person } from '@material-ui/icons';
 
 import Input from '../components/Input';
 
@@ -18,7 +18,7 @@ import {
   TypographySecundary,
   TypographyThird,
   TypographyTitle
-} from '../styles/login/styles';
+} from '../styles/pages/login/styles';
 import useThemeContext from '../data/hooks/useThemeContext';
 import { Theme } from '../data/context/ThemeContext';
 
@@ -28,11 +28,17 @@ function Login() {
   const [typeForm, setTypeForm] = useState<'login' | 'cadastro'>('login')
   const { handleSubmit, watch, control, formState: { errors } } = useForm();
 
+  const typeFormHasCadastro = typeForm === 'cadastro'
+
   const onSubmit = data => console.log('Data', data);
 
   const onChangeVisible = () => {
     setVisible(!visible)
   };
+
+  const handleTypeForm = () => {
+    setTypeForm(typeFormHasCadastro ? 'login' : 'cadastro')
+  }
 
   return (
     <Container>
@@ -61,7 +67,7 @@ function Login() {
           <Image src={`${type === Theme.LIGT ? '/image/jws-112-175.png' : '/image/jws-white-112-175.png'}`} width={62} height={105} />
         </GridImageNext>
         <TypographyTitle variant="h5" >
-          Conecte-se
+          {typeFormHasCadastro ? 'Cadastre-se' : 'Conecte-se'}
         </TypographyTitle>
         <GridItem>
           <Input
@@ -77,6 +83,38 @@ function Login() {
             }
           />
         </GridItem>
+        {typeFormHasCadastro && (
+          <>
+            <GridItem>
+              <Input
+                name="nome"
+                placeholder="Nome"
+                color="secondary"
+                control={control}
+                errors={errors}
+                icon={
+                  <IconButton>
+                    <Person color="action" />
+                  </IconButton>
+                }
+              />
+            </GridItem>
+            <GridItem>
+              <Input
+                name="sobrenome"
+                placeholder="Sobrenome"
+                color="secondary"
+                control={control}
+                errors={errors}
+                icon={
+                  <IconButton>
+                    <InsertComment color="action" />
+                  </IconButton>
+                }
+              />
+            </GridItem>
+          </>
+        )}
         <GridItem>
           <Input
             name="password"
@@ -110,7 +148,7 @@ function Login() {
         <NovaConta>
           <p>
             Novo por aqui?
-            <a onClick={() => setTypeForm(typeForm === 'login' ? 'cadastro' : 'login')}>
+            <a onClick={handleTypeForm}>
               Criar uma conta gratuitamente
             </a>
           </p>

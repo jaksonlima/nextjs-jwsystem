@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { Fragment } from 'react'
 
-import Layout from '.'
+import Layout from '../Layout_v2/Layout'
 
 const notRenderWithLayout: string[] = ["/login"]
 
