@@ -10,6 +10,7 @@ import NavBar from '../Layout/NavBar';
 import styled, { css } from 'styled-components';
 import useThemeContext from '../../data/hooks/useThemeContext';
 import { Theme } from '../../data/context/ThemeContext';
+import useWindowSize from '../../data/hooks/useWindowSize'
 
 interface LayoutProps {
   children: any
@@ -19,12 +20,26 @@ export default function Layout({ children }: LayoutProps) {
   const [open, setOpen] = useState(false);
   const classes = useStyles(200);
 
-  const handleDrawer = () => setOpen(!open);
+  const { width } = useWindowSize();
   const { onChangeTheme } = useThemeContext()
+
+  const handleDrawer = () => setOpen(!open);
+
+  console.log(width)
+
+  const [state, setState] = React.useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  });
 
   return (
     <Container>
       <Drawer
+        // {width === 425 ? {} : {}}
+        // open={true}
+        // anchor="left"
         variant="permanent"
         className={clsx(classes.drawer, {
           [classes.drawerOpen]: open,
@@ -55,7 +70,7 @@ export default function Layout({ children }: LayoutProps) {
             </Box>
           </ItemAfterNavegation>
         </AfterNavegation>
-        <PaperMUI elevation={3} >
+        <PaperMUI elevation={3}>
           <SecondSheet>
             <Table bgcolor='background.paper'>
               <Icon boxShadow={3} color="#20cd4e" />
@@ -75,6 +90,7 @@ export default function Layout({ children }: LayoutProps) {
             {Array.from({ length: 19 }, (v, k) => (
               <h1>Jakson Wilson Bonfim de Lima</h1>
             ))}
+
           </SecondSheet>
         </PaperMUI>
       </Main>
