@@ -6,7 +6,6 @@ import GlobalStyle from '../styles/globals';
 import { ThemeProviderContext } from '../data/context/ThemeContext'
 import ThemeProvider from '../components/Theme/ThemeProvider'
 import SelectWhatRendersWithLayout from '../components/Layout/SelectWhatRendersWithLayout';
-import Layout from '../components/Layout_v2/Layout';
 
 interface MyAppProps {
   Component: any,

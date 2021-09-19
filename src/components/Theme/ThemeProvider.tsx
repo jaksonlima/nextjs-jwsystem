@@ -1,4 +1,5 @@
 import { ThemeProvider } from "@material-ui/core"
+import { ThemeProvider as ThemeProviderStyledComponent } from 'styled-components'
 import { useMemo } from "react"
 
 import useThemeContext from "../../data/hooks/useThemeContext"
@@ -15,7 +16,9 @@ function MyThemeProvider({ children }: MyThemeProviderProps) {
 
   return (
     <ThemeProvider theme={theme}>
-      {children}
+      <ThemeProviderStyledComponent theme={theme}>
+        {children}
+      </ThemeProviderStyledComponent>
     </ThemeProvider>
   )
 }

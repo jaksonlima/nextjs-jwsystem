@@ -28,6 +28,7 @@ const GlobalStyle = createGlobalStyle`
 
   ::-webkit-scrollbar-thumb {
     background: #7a7a90c9;
+    border-radius: 3px;
   }
 `
 

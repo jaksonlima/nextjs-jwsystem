@@ -3,13 +3,13 @@ import clsx from 'clsx';
 import Drawer from '@material-ui/core/Drawer';
 import ArrowBackIos from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIos from '@material-ui/icons/ArrowForwardIos';
-import { IconButton } from '@material-ui/core';
+import { Box, IconButton, Typography } from '@material-ui/core';
 
-import { Container, ContainerArrow, useStyles, Main } from './styles';
+import { Container, ContainerArrow, useStyles, Main, PaperMUI, Table, Icon, Process, ProcessIcon } from './styles';
 import NavBar from '../Layout/NavBar';
-import Navigation from '../Layout/Navigation';
-import Logo from '../Logo';
 import styled, { css } from 'styled-components';
+import useThemeContext from '../../data/hooks/useThemeContext';
+import { Theme } from '../../data/context/ThemeContext';
 
 interface LayoutProps {
   children: any
@@ -20,6 +20,7 @@ export default function Layout({ children }: LayoutProps) {
   const classes = useStyles(200);
 
   const handleDrawer = () => setOpen(!open);
+  const { onChangeTheme } = useThemeContext()
 
   return (
     <Container>
@@ -41,31 +42,77 @@ export default function Layout({ children }: LayoutProps) {
             {open ? <ArrowBackIos /> : <ArrowForwardIos />}
           </IconButton>
         </ContainerArrow>
-        <AnimationLogo>
-          <Logo />
-        </AnimationLogo>
         <NavBar />
       </Drawer>
 
-      <Main >
-        <Navigation />
-        {children}
+      <Main onClick={onChangeTheme} >
+        <AfterNavegation>
+          <ItemAfterNavegation>
+            <Box sx={{ display: 'flex' }} m={1} alignItems="center">
+              <TypographyMUI variant="body1" >
+                Home
+              </TypographyMUI>
+            </Box>
+          </ItemAfterNavegation>
+        </AfterNavegation>
+        <PaperMUI elevation={3} >
+          <SecondSheet>
+            <Table bgcolor='background.paper'>
+              <Icon boxShadow={3} color="#20cd4e" />
+              <Icon boxShadow={3} color="#f7625a" />
+              <Process >
+                <ProcessIcon
+                  color="secondary"
+                  variant="determinate"
+                  value={0}
+                />
+              </Process>
+            </Table>
+            <Box height="33px" />
+
+            {children}
+
+            {Array.from({ length: 19 }, (v, k) => (
+              <h1>Jakson Wilson Bonfim de Lima</h1>
+            ))}
+          </SecondSheet>
+        </PaperMUI>
       </Main>
-    </Container>
+    </Container >
   );
 }
 
+export const TypographyMUI = styled(Typography)`
+  font-weight: 500 !important;
+`
 
-export const AnimationLogo = styled.div`
-  width: 27px;
-  height: 45px;
-  margin: auto;
-  position: absolute;
-  left: 79px;
-  top: 4px;
+export const SecondSheet = styled.div`
+  height: 100%;
+  padding: 8px 0 0 8px;
+  overflow: scroll;
+`
 
-  /* ${props => props.open && css`
-    background: white;
-    color: black;
-  `} */
+export const AfterNavegation = styled(Box)`
+  display: flex;
+`
+
+export const ItemAfterNavegation = styled(Box)`
+  display: flex;
+  max-width: 120px;
+  width: 100%;
+  max-height: 30px;
+  height: 100%;
+  margin-right: 2px;
+  border-radius: 5px 5px 0px 0px;
+
+  ${({ theme }) => theme.palette.type === Theme.DARK ?
+    css`
+    background-color: #13233a;
+    border: 1px solid #1d3e6b;
+   ` :
+    css`
+     background-color: #ddf4ff;
+    border: 1px solid #bbdfff;
+   `
+  }
 `
